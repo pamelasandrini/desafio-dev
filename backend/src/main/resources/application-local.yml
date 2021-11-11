@@ -1,0 +1,7 @@
+info:
+  app:
+    name: backend (local)
+    description: backend
+
+server:
+  port: 8000

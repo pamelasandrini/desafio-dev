@@ -1,0 +1,30 @@
+<server description="backend-server">
+
+    <featureManager>
+        <feature>beanValidation-1.1</feature>
+        <feature>cdi-1.2</feature>
+        <feature>jaxrs-2.0</feature>
+    </featureManager>
+
+    <httpEndpoint
+        id="defaultHttpEndpoint"
+        host="*"
+        httpPort="8080"
+        httpsPort="8443"
+    />
+
+    <!-- Impede que o serviço REST devolva JSESSION ID. -->
+    <httpSession cookiesEnabled="false"/>
+
+    <applicationManager autoExpand="true"/>
+
+    <applicationMonitor updateTrigger="mbean"/>
+
+    <webApplication
+        id="backend"
+        name="backend"
+        location="/opt/ibm/wlp/usr/shared/resources/backend.war"
+        contextRoot="/">
+    </webApplication>
+
+</server>
