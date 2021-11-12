@@ -1,13 +1,12 @@
 package br.com.desafio.transacao.usecases
 
+import br.com.desafio.structural.CommonsConfig
 import br.com.desafio.transacao.entities.TipoTransacao
 import br.com.desafio.transacao.entities.Transacao
-import org.springframework.mock.web.MockMultipartFile
 import spock.lang.Specification
 
 class ExtractTransacaoFileTest extends Specification {
 
-    def static resourcesPath = "src/test/resources/"
     def static validFile = "sucesso.txt"
     def static invalidFile = "invalido.txt"
 
@@ -16,7 +15,7 @@ class ExtractTransacaoFileTest extends Specification {
 
     def "Cria lista de transacoes a partir de um arquivo valido"() {
         given: "dado um arquivo txt válido"
-        def file = createMockMultipartFile(validFile)
+        def file = CommonsConfig.createMockMultipartFile(validFile)
 
         and: "não há exception"
         1 * validateFileFormat.execute(_) >> {}
@@ -38,7 +37,7 @@ class ExtractTransacaoFileTest extends Specification {
 
     def "Cria lista de transacoes a partir de um arquivo invalido"() {
         given: "dado um arquivo txt inválido"
-        def file = createMockMultipartFile(invalidFile)
+        def file = CommonsConfig.createMockMultipartFile(invalidFile)
 
         and: "não há exception"
         1 * validateFileFormat.execute(_) >> {}
@@ -49,10 +48,6 @@ class ExtractTransacaoFileTest extends Specification {
         then: "deve retornar exception"
         def e = thrown(Exception)
         e.message == "Arquivo inválido!"
-    }
-
-    private createMockMultipartFile(String fileName) {
-        new MockMultipartFile("file", "${fileName}", "text/plain", new File("${resourcesPath}${fileName}").getBytes())
     }
 
 }
