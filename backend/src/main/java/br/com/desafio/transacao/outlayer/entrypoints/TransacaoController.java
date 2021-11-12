@@ -8,7 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/v1/trasacoes")
+@RequestMapping("/v1/transacoes")
 public class TransacaoController {
 
     private final UploadTransactionsOrchestrator uploadTransactionsOrchestrator;
