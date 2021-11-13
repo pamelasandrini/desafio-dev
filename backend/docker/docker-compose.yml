@@ -1,0 +1,18 @@
+version: '3.4'
+
+services:
+  sql.data:
+    image: mcr.microsoft.com/mssql/server:2017-latest
+    container_name: dev_sql
+    environment:
+      SA_PASSWORD: "Transacao2020"
+      ACCEPT_EULA: "Y"
+      MSSQL_PID: "Express"
+    healthcheck:
+      test: ["CMD", "/opt/mssql-tools/bin/sqlcmd", "-USA", "-PTransacao2020", "-Q", "select 1"]
+      interval: 1s
+      retries: 20
+    volumes:
+      - /data/dev-ops/mssql/scripts:/scripts
+    ports:
+      - "1433:1433"
