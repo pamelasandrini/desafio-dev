@@ -5,3 +5,19 @@ info:
 
 server:
   port: 8000
+
+database-info:
+  mssql-u: SA
+  mssql-p: Transacao2020
+
+spring:
+  datasource:
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    url: jdbc:sqlserver://localhost:1433;databaseName=CIARD000
+    username: ${database-info.mssql-u}
+    password: ${database-info.mssql-p}
+  jpa:
+    show-sql: true
+    hibernate:
+      dialect: org.hibernate.dialect.SQLServer2012Dialect
+      ddl-auto: create-drop

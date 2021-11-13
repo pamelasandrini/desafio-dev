@@ -2,3 +2,19 @@ info:
   app:
     name: backend (PRD)
     description: backend
+
+database-info:
+  mssql-u: dusrciarbd01
+  mssql-p: Dusrciarbd01
+
+spring:
+  datasource:
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    url: jdbc:sqlserver://172.16.38.95:30079;databaseName=CIARD000
+    username: ${database-info.mssql-u}
+    password: ${database-info.mssql-p}
+  jpa:
+    show-sql: true
+    hibernate:
+      dialect: org.hibernate.dialect.SQLServer2012Dialect
+      ddl-auto: validate
