@@ -43,3 +43,55 @@ http://localhost:8000/health
 ### documentação swagger
 http://localhost:8000/swagger-ui.html
 
+### APIs
+
+
+**Upload do arquivo**
+
+POST
+```json
+http://localhost:8000/v1/transacoes/upload
+```
+file: CNAB.txt
+
+Response: Status 201 - Created
+
+**Busca todas as lojas**
+
+GET
+```json
+http://localhost:8000/v1/lojas
+```
+Response:
+```json
+[
+  {
+    "dono": "string",
+    "id": 0,
+    "nome": "string"
+  }
+] 
+```
+
+**Busca todas as operações de uma loja**
+
+GET
+```json
+http://localhost:8000/v1/lojas/{id}/saldo
+```
+Response:
+```json
+{
+  "saldoEmConta": 0,
+  "transacaoList": [
+    {
+      "cartao": "string",
+      "cpf": "string",
+      "data": "string",
+      "hora": "string",
+      "tipoTransacao": "DEBITO",
+      "valor": 0
+    }
+  ]
+}
+```

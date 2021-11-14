@@ -5,11 +5,13 @@ import br.com.desafio.transacao.entities.Transacao;
 import br.com.desafio.transacao.outlayer.gateway.adapter.LojaAdapter;
 import br.com.desafio.transacao.outlayer.gateway.adapter.TransacaoAdapter;
 import br.com.desafio.transacao.outlayer.gateway.repository.entities.LojaEntity;
+import br.com.desafio.transacao.outlayer.gateway.repository.entities.TransacaoEntity;
 import br.com.desafio.transacao.outlayer.gateway.repository.sqlserver.LojaRepository;
 import br.com.desafio.transacao.outlayer.gateway.repository.sqlserver.TransacaoRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -39,5 +41,18 @@ public class TransacaoGateway {
                 System.out.println("Erro ao salvar transação no banco, " + e);
             }
         });
+    }
+
+    public List<Transacao> getTrasacoesByLojaId(final Integer id) {
+
+        final List<Transacao> transacaoList = new ArrayList<>();
+
+        final List<TransacaoEntity> transacaoEntityList = transacaoRepository.findByIdLoja(id);
+        for (final TransacaoEntity transacaoEntity : transacaoEntityList) {
+            final Transacao transacao = TransacaoAdapter.adpat(transacaoEntity);
+            transacaoList.add(transacao);
+        }
+
+        return transacaoList;
     }
 }

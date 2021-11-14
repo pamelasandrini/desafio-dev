@@ -3,6 +3,7 @@ package br.com.desafio.transacao.outlayer.entrypoints
 import br.com.desafio.structural.CommonsConfig
 import br.com.desafio.transacao.entities.Loja
 import br.com.desafio.transacao.outlayer.gateway.repository.LojaGateway
+import br.com.desafio.transacao.outlayer.gateway.repository.TransacaoGateway
 import br.com.desafio.transacao.outlayer.gateway.repository.entities.LojaTemplate
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
@@ -25,11 +26,19 @@ class LojaControllerTest extends Specification {
     @Autowired
     private LojaGateway lojaGateway
 
+    @Autowired
+    private TransacaoGateway transacaoGateway
+
     @TestConfiguration
     static class Mocks extends CommonsConfig {
         @Bean
         LojaGateway lojaGateway() {
             factory.Mock(LojaGateway) as LojaGateway
+        }
+
+        @Bean
+        TransacaoGateway transacaoGateway() {
+            factory.Mock(TransacaoGateway) as TransacaoGateway
         }
     }
 

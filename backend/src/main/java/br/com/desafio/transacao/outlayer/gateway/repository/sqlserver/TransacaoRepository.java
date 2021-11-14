@@ -4,7 +4,10 @@ import br.com.desafio.transacao.outlayer.gateway.repository.entities.TransacaoEn
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface TransacaoRepository extends CrudRepository<TransacaoEntity, Integer> {
 
+    List<TransacaoEntity> findByIdLoja(Integer idLoja);
 }

@@ -39,4 +39,8 @@ public enum TipoTransacao {
         }
         throw new RuntimeException("Tipo de transação inválida!");
     }
+
+    public NaturezaTipoTransacao getNaturezaTipoTransacao() {
+        return naturezaTipoTransacao;
+    }
 }

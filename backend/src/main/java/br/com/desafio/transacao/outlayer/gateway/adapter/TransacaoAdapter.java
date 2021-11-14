@@ -1,5 +1,6 @@
 package br.com.desafio.transacao.outlayer.gateway.adapter;
 
+import br.com.desafio.transacao.entities.TipoTransacao;
 import br.com.desafio.transacao.entities.Transacao;
 import br.com.desafio.transacao.outlayer.gateway.repository.entities.TransacaoEntity;
 import lombok.AccessLevel;
@@ -29,5 +30,16 @@ public class TransacaoAdapter {
         transacaoList.forEach(t -> transacaoEntityList.add(adpat(t, idLoja)));
 
         return transacaoEntityList;
+    }
+
+    public static Transacao adpat(final TransacaoEntity transacaoEntity) {
+        return Transacao.builder()
+            .cartao(transacaoEntity.getCartao())
+            .cpf(transacaoEntity.getCpf())
+            .data(transacaoEntity.getData())
+            .hora(transacaoEntity.getHora())
+            .tipoTransacao(TipoTransacao.getTipoTransacaoByCodigo(transacaoEntity.getTipoTransacao()))
+            .valor(transacaoEntity.getValor())
+            .build();
     }
 }
