@@ -1,7 +1,6 @@
 package br.com.desafio.transacao.outlayer.gateway.adapter;
 
 import br.com.desafio.transacao.entities.Transacao;
-import br.com.desafio.transacao.outlayer.gateway.repository.entities.LojaEntity;
 import br.com.desafio.transacao.outlayer.gateway.repository.entities.TransacaoEntity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -12,28 +11,22 @@ import java.util.List;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class TransacaoAdapter {
 
-    public static TransacaoEntity adpat(final Transacao transacao) {
-
-        final LojaEntity lojaEntity = LojaEntity.builder()
-            .dono(transacao.getLoja().getDono())
-            .nome(transacao.getLoja().getNome())
-            .build();
-
+    public static TransacaoEntity adpat(final Transacao transacao, final Integer idLoja) {
         return TransacaoEntity.builder()
             .cartao(transacao.getCartao())
             .cpf(transacao.getCpf())
             .data(transacao.getData())
             .hora(transacao.getHora())
             .tipoTransacao(transacao.getTipoTransacao().getCodigo())
-            .loja(lojaEntity)
             .valor(transacao.getValor())
+            .idLoja(idLoja)
             .build();
     }
 
-    public static List<TransacaoEntity> adpat(final List<Transacao> transacao) {
+    public static List<TransacaoEntity> adpat(final List<Transacao> transacaoList, final Integer idLoja) {
 
         final List<TransacaoEntity> transacaoEntityList = new ArrayList<>();
-        transacao.forEach(t -> transacaoEntityList.add(adpat(t)));
+        transacaoList.forEach(t -> transacaoEntityList.add(adpat(t, idLoja)));
 
         return transacaoEntityList;
     }

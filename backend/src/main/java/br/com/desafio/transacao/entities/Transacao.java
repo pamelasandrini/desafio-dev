@@ -14,5 +14,4 @@ public class Transacao {
     private String cpf;
     private String cartao;
     private String hora;
-    private Loja loja;
 }

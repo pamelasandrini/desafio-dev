@@ -1,6 +1,7 @@
 package br.com.desafio.transacao.usecases
 
 import br.com.desafio.structural.CommonsConfig
+import br.com.desafio.transacao.entities.Loja
 import br.com.desafio.transacao.entities.TipoTransacao
 import br.com.desafio.transacao.entities.Transacao
 import spock.lang.Specification
@@ -21,18 +22,22 @@ class ExtractTransacaoFileTest extends Specification {
         1 * validateFileFormat.execute(_) >> {}
 
         when: "chamar o extrator"
-        List<Transacao> transacaoList = extractTransacaoFile.execute(file)
+        Map<Loja, List<Transacao>> transacaoMap = extractTransacaoFile.execute(file)
 
         then: "deve retornar a lista de transações corretamente"
-        transacaoList.size() == 1
-        transacaoList[0].tipoTransacao == TipoTransacao.FINANCIAMENTO
-        transacaoList[0].data == "20190301"
-        transacaoList[0].valor == 14200
-        transacaoList[0].cpf == "09620676017"
-        transacaoList[0].cartao == "4753****3153"
-        transacaoList[0].hora == "153453"
-        transacaoList[0].loja.nome == "BAR DO JOÃO"
-        transacaoList[0].loja.dono == "JOÃO MACEDO"
+        transacaoMap.size() == 1
+        transacaoMap.each { entry ->
+            entry.key.nome == "BAR DO JOÃO"
+            entry.key.dono == "JOÃO MACEDO"
+
+            entry.value.size() == 1
+            entry.value[0].tipoTransacao == TipoTransacao.FINANCIAMENTO
+            entry.value[0].data == "20190301"
+            entry.value[0].valor == 14200
+            entry.value[0].cpf == "09620676017"
+            entry.value[0].cartao == "4753****3153"
+            entry.value[0].hora == "153453"
+        }
     }
 
     def "Cria lista de transacoes a partir de um arquivo invalido"() {
