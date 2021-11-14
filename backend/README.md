@@ -1,5 +1,21 @@
-##Projeto Spring Boot com SQL Server
-Converte um arquivo .txt em objeto e faz o upload no banco de dados 
+# Projeto
+API faz o upload de um arquivo txt com os dados das movimentações finanaceira de várias lojas.
+
+## Tecnologias do projeto
+- Java 8
+- Spring Boot
+- Spring Data JPA
+- REST
+- SQL Server
+- Docker
+- Docker Compose
+- Lombok
+- Swagger
+- Maven
+- Spock
+
+## Arquitetura do projeto
+Este projeto utiliza as camadas do clean architecture.
 
 ## Comandos Úteis
 ```sh
@@ -7,7 +23,7 @@ Converte um arquivo .txt em objeto e faz o upload no banco de dados
 mvn clean install
 
 # Executando testes unitário 
-# relatório de teste {path}/backend/target/site/jacoco/index.html
+# relatório de cobertura de teste em: {path}/backend/target/site/jacoco/index.html
 mvn clean test
 
 # Executando a aplicação
