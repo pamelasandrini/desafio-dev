@@ -6,6 +6,7 @@ import lombok.Data;
 @Data
 @Builder
 public class Loja {
+    private Integer id;
     private String dono;
     private String nome;
 }

@@ -16,4 +16,12 @@ public class LojaAdapter {
             .build();
     }
 
+    public static Loja adapt(final LojaEntity lojaEntity) {
+        return Loja.builder()
+            .nome(lojaEntity.getNome())
+            .dono(lojaEntity.getDono())
+            .id(lojaEntity.getId())
+            .build();
+    }
+
 }
