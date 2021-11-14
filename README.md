@@ -1,9 +1,9 @@
 # Descrição do projeto
 
 Entrada do serviço: um [arquivo CNAB](https://github.com/ByCodersTec/desafio-ruby-on-rails/blob/master/CNAB.txt) com os dados das movimentações finanaceira de várias lojas.
-- normalize os dados
-- armazene-os em um banco de dados relacional 
-- exiba essas informações em tela
+- normaliza os dados
+- armazena-os em um banco de dados relacional 
+- exibe essas informações em tela
 
 # Documentação do CNAB
 
