@@ -27,7 +27,7 @@ mvn clean install
 mvn clean test
 
 # Executando a aplicação
-mvn spring:boot run
+mvn spring-boot:run
 ```
 
 Para executar o projeto primeiro é necessário subir o banco de dados:
